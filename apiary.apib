@@ -1,9 +1,32 @@
 FORMAT: 1A
 HOST: https://api.vyfakturuj.cz/2.0/
 
-# Vyfakturuj.cz
+# Vyfakturuj.cz API (v2)
 
-API prostředí systému Vyfakturuj.cz
+API [Vyfakturuj.cz](https://www.vyfakturuj.cz/), verze 2.
+
+# Základní informace
+
+Vyfakturuj využívá REST API. Aktuálně je dostupné pouze API verze 2, starší již není možné použít.
+
+Najdete-li v dokumentace chybu, [nahlaste nám](https://github.com/redbitcz/vyfakturuj-apiary/issues) ji prosím. 
+V případě nejasností nás prosím [kontaktujte](https://www.vyfakturuj.cz/kontakt/).
+
+# Zásady
+
+V zájmu zachování spolehlivosti a bezpečnosti prosíme dbejte na dodržení těchto zásad.
+
+- Vždy se připojujte přes `HTTPS`, které zajišťuje bezpečnost vašich dat.
+- Dbejte opatrnosti, aby se autorizační údaje (jméno a klíč) nedostaly do nepovolaných rukou.
+- Pokud Váš server nezná náš SSL/TLS certifikát a odmítá se k němu připojit, nevypínejte kontrolu certifikátu.
+
+# Autorizace
+
+Protože API pracuje s citlivými uživatelskými daty, nelze jej používat bez autorizace.
+
+Autorizace požadavků se prování standardní [Basic access authentication](https://cs.wikipedia.org/wiki/Basic_access_authentication).
+Jako přihlašovací jméno je použit e-mail uživatele, jako heslo použijte API klíč, který
+získáte v [administraci API Vyfakturuj.cz](https://app.vyfakturuj.cz/nastaveni/api/).
 
 
 
