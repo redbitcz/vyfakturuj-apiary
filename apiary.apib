@@ -16,8 +16,6 @@ V případě nejasností nás prosím [kontaktujte](https://www.vyfakturuj.cz/ko
 
 V zájmu zachování spolehlivosti a bezpečnosti prosíme dbejte na dodržení těchto zásad.
 
-- Vždy používejte kódování znakové sady UTF-8, jiná kódování nejsou podporována. Pokud Váš systém
-  používá jiné kódování, musíte zajistit převod.
 - Vždy se připojujte přes `HTTPS`, které zajišťuje bezpečnost vašich dat.
 - Dbejte opatrnosti, aby se autorizační údaje (jméno a klíč) nedostaly do nepovolaných rukou.
 - Pokud Váš server nezná náš SSL/TLS certifikát a odmítá se k němu připojit, **nevypínejte kontrolu certifikátu**,
@@ -61,6 +59,15 @@ S využitím [Vyfakturuj.cz API SDK pro PHP](https://github.com/redbitcz/vyfaktu
 $vyfakturuj_api = new VyfakturujAPI('user@gmail.com', 'fTZ5VjopEQ');
 $result = $vyfakturuj_api->test();
 ```
+
+## Vyfakturuj + SimpleShop
+
+Toto API je možné použít i pro náš druhý produkt [SimpleShop.cz](https://www.simpleshop.cz/). Pro správné fungování je potřeba směřovat requesty na URL:
+
+```
+https://api.simpleshop.cz/2.0/
+```
+
 # Group Faktury
 
 ## Faktury
@@ -78,6 +85,12 @@ $result = $vyfakturuj_api->test();
         <td>int</td>
         <td>ID dokumentu</td>
         <td>R</td>
+    </tr>
+    <tr>
+        <td>id_identity</td>
+        <td>int</td>
+        <td>ID identity</td>
+        <td>R/W</td>
     </tr>
     <tr>
         <td>id_customer</td>
@@ -101,6 +114,18 @@ $result = $vyfakturuj_api->test();
         <td>id_center</td>
         <td>int</td>
         <td>ID střediska</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>id_predkontace</td>
+        <td>int</td>
+        <td>ID předkontace</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>id_cleneniDPH</td>
+        <td>int</td>
+        <td>ID členění DPH</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -250,6 +275,12 @@ $result = $vyfakturuj_api->test();
         <td>R/W</td>
     </tr>
     <tr>
+        <td>supplier_IDNUM3</td>
+        <td>string20</td>
+        <td>Dodavatel - Třetí identifikátor firmy (např. DIČ pro SK)</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
         <td>supplier_name</td>
         <td>string100</td>
         <td>Dodavatel - název firmy</td>
@@ -276,7 +307,7 @@ $result = $vyfakturuj_api->test();
     <tr>
         <td>supplier_country_code</td>
         <td>string20</td>
-        <td>Dodavatel - oód země (ISO 3166-2)</td>
+        <td>Dodavatel - Kód země (ISO 3166-2)</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -328,6 +359,18 @@ $result = $vyfakturuj_api->test();
         <td>R/W</td>
     </tr>
     <tr>
+        <td>customer_firstname</td>
+        <td>string100</td>
+        <td>Odběratel - jméno</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_lastname</td>
+        <td>string100</td>
+        <td>Odběratel - příjmení</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
         <td>customer_street</td>
         <td>string50</td>
         <td>Odběratel - ulice</td>
@@ -349,6 +392,60 @@ $result = $vyfakturuj_api->test();
         <td>customer_country_code</td>
         <td>string2</td>
         <td>Odběratel - kód země (ISO 3166-2)</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_tel</td>
+        <td>string30</td>
+        <td>Odběratel - kontaktní telefon</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_company</td>
+        <td>string100</td>
+        <td>Odběratel - název firmy</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_firstname</td>
+        <td>string100</td>
+        <td>Odběratel - jméno</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_lastname</td>
+        <td>string100</td>
+        <td>Odběratel - příjmení</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_street</td>
+        <td>string50</td>
+        <td>Odběratel - ulice</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_city</td>
+        <td>string50</td>
+        <td>Odběratel - město</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_zip</td>
+        <td>int</td>
+        <td>Odběratel - PSČ</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_country_code</td>
+        <td>string2</td>
+        <td>Odběratel - kód země (ISO 3166-2)</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>customer_delivery_tel</td>
+        <td>string30</td>
+        <td>Dodavatel - kontaktní telefon</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -393,6 +490,7 @@ $result = $vyfakturuj_api->test();
             <code>2</code> Položky mají koncovou cenu s DPH<br>
             <code>3</code> DPH je účtováno ve speciálním režimu<br>
             <code>4</code> DPH je v režimu prenesené daňové povinnosti<br>
+            <code>6</code> Daň odvede zákazník<br>
             <code>5</code> Neplátce DPH
         </blockquote></td>
         <td>R/W</td>
@@ -403,9 +501,7 @@ $result = $vyfakturuj_api->test();
         <td>Zaokrouhlení dokumentu
         <blockquote>
             <code>1</code> Nezaokrouhlovat<br>
-            <code>2</code> Háleřové vyrovnání<br>
-            <code>4</code> Zaokrouhlit nahoru<br>
-            <code>3</code> Zaokrouhlit DPH
+            <code>2</code> Zaokrouhlit (háleřové vyrovnání)
         </blockquote></td>
         <td>R/W</td>
     </tr>
@@ -478,8 +574,20 @@ $result = $vyfakturuj_api->test();
     </tr>
     <tr>
         <td>currency</td>
-        <td>string5</td>
+        <td>string3</td>
         <td>Měna</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>currency_domestic</td>
+        <td>string3</td>
+        <td>Domácí měna</td>
+        <td>R</td>
+    </tr>
+    <tr>
+        <td>search</td>
+        <td>string255</td>
+        <td>String pro vyhledávání mezi fakturami</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -911,13 +1019,13 @@ $result = $vyfakturuj_api->test();
     <tr>
         <td>date_created_from</td>
         <td>date</td>
-        <td>Datum vytvoření od</td>
+        <td>Datum vytvoření od (nelze použít v parametru filter)</td>
         <td>R/W</td>
     </tr>
     <tr>
         <td>date_created_to</td>
         <td>date</td>
-        <td>Datum vytvoření do</td>
+        <td>Datum vytvoření do (nelze použít v parametru filter)</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -942,6 +1050,12 @@ $result = $vyfakturuj_api->test();
         <td>filter</td>
         <td>string</td>
         <td>(BETA) Filtrování dokladů, Syntaxe {NAZEV_SLOUPCE}~{OPERATOR}~{HODNOTA}|{NAZEV_SLOUPCE}~{OPERATOR}~{HODNOTA} ...</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>q</td>
+        <td>string</td>
+        <td>Vyhledani podle retezce</td>
         <td>R/W</td>
     </tr>
 </table>
@@ -991,11 +1105,14 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": 549938,
+                "id": 1115850,
+                "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28437",
                 "id_payment_method": "10456",
                 "id_center": "0",
+                "id_predkontace": "0",
+                "id_cleneniDPH": "0",
                 "id_coupon": "0",
                 "id_parent": "0",
                 "id_eet_pokl": "0",
@@ -1004,10 +1121,10 @@ $result = $vyfakturuj_api->test();
                 "tags": "0",
                 "eet_status": "1",
                 "eet_data": "",
-                "number": "20190239",
-                "date_created": "2019-05-15",
-                "date_due": "2019-05-25",
-                "date_taxable_supply": "2019-05-15",
+                "number": "20200014",
+                "date_created": "2020-02-10",
+                "date_due": "2020-02-20",
+                "date_taxable_supply": "2020-02-10",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1015,33 +1132,60 @@ $result = $vyfakturuj_api->test();
                 "days_due": "10",
                 "supplier_IC": "00000019",
                 "supplier_DIC": "CZ00000019",
-                "supplier_name": "Demo s.r.o.",
+                "supplier_IDNUM3": "",
+                "supplier_name": "Demo s.r.o. plátce",
                 "supplier_street": "Ukázková 123",
                 "supplier_city": "Ukázkov",
                 "supplier_zip": "12334",
                 "supplier_country": "Česká republika",
                 "supplier_country_code": "CZ",
+                "supplier_contact_name": "Samuel L. Jackson",
+                "supplier_contact_tel": "+123456789",
+                "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                "supplier_contact_web": "jackson.org",
                 "customer_IC": "123456789",
                 "customer_DIC": "CZ123456789",
+                "customer_IDNUM3": "",
                 "customer_name": "Ukázková Firma",
+                "customer_firstname": "",
+                "customer_lastname": "",
                 "customer_street": "Pouliční 79/C",
                 "customer_city": "Praha",
                 "customer_zip": "10300",
                 "customer_country": "Česká republika",
+                "customer_country_code": "",
+                "customer_tel": "",
+                "customer_delivery_company": "",
+                "customer_delivery_firstname": "",
+                "customer_delivery_lastname": "",
+                "customer_delivery_street": "",
+                "customer_delivery_city": "",
+                "customer_delivery_zip": "",
+                "customer_delivery_country_code": "",
+                "customer_delivery_tel": "",
+                "bank_account_number": "",
+                "bank_IBAN": "",
+                "bank_BIC": "",
                 "payment_method": "8",
                 "calculate_vat": "1",
                 "round_invoice": "1",
+                "order_number": "",
                 "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                "text_under_customer": "",
                 "text_before_items": "",
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20190239",
+                "VS": "20200014",
                 "KS": "0308",
+                "SS": "",
                 "currency": "CZK",
+                "currency_domestic": "CZK",
+                "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": 1,
                 "total": "1206.64",
                 "total_without_vat": "1049.25",
+                "webhook_paid": "",
                 "X_1": "",
                 "X_2": "",
                 "X_3": "",
@@ -1110,14 +1254,14 @@ $result = $vyfakturuj_api->test();
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549938/f60ed0/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549938/f60ed0/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/nostamp/",
-                "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549938/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
                 "log": [
                     {
-                        "date": "2019-05-15 15:49:49",
+                        "date": "2020-02-10 11:01:03",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
@@ -1131,7 +1275,7 @@ $result = $vyfakturuj_api->test();
 
         {
             "type": 32,
-            "id_parent": 549938
+            "id_parent": 1115850
         }
 
 + Response 200 (application/json)
@@ -1143,23 +1287,26 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": 549939,
+                "id": 1115851,
+                "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28443",
                 "id_payment_method": "10456",
                 "id_center": "0",
+                "id_predkontace": "0",
+                "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "549938",
+                "id_parent": "1115850",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
                 "tags": "0",
                 "eet_status": "1",
                 "eet_data": "",
-                "number": "520190001",
-                "date_created": "2019-05-15",
-                "date_due": "2019-05-15",
-                "date_taxable_supply": "2019-05-15",
+                "number": "520200001",
+                "date_created": "2020-02-10",
+                "date_due": "2020-02-10",
+                "date_taxable_supply": "2020-02-10",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1167,33 +1314,60 @@ $result = $vyfakturuj_api->test();
                 "days_due": "0",
                 "supplier_IC": "00000019",
                 "supplier_DIC": "CZ00000019",
-                "supplier_name": "Demo s.r.o.",
+                "supplier_IDNUM3": "",
+                "supplier_name": "Demo s.r.o. plátce",
                 "supplier_street": "Ukázková 123",
                 "supplier_city": "Ukázkov",
                 "supplier_zip": "12334",
                 "supplier_country": "Česká republika",
                 "supplier_country_code": "CZ",
+                "supplier_contact_name": "Samuel L. Jackson",
+                "supplier_contact_tel": "+123456789",
+                "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                "supplier_contact_web": "jackson.org",
                 "customer_IC": "123456789",
                 "customer_DIC": "CZ123456789",
+                "customer_IDNUM3": "",
                 "customer_name": "Ukázková Firma",
+                "customer_firstname": "",
+                "customer_lastname": "",
                 "customer_street": "Pouliční 79/C",
                 "customer_city": "Praha",
                 "customer_zip": "10300",
                 "customer_country": "Česká republika",
+                "customer_country_code": "",
+                "customer_tel": "",
+                "customer_delivery_company": "",
+                "customer_delivery_firstname": "",
+                "customer_delivery_lastname": "",
+                "customer_delivery_street": "",
+                "customer_delivery_city": "",
+                "customer_delivery_zip": "",
+                "customer_delivery_country_code": "",
+                "customer_delivery_tel": "",
+                "bank_account_number": "",
+                "bank_IBAN": "",
+                "bank_BIC": "",
                 "payment_method": "8",
                 "calculate_vat": "1",
                 "round_invoice": "1",
+                "order_number": "",
                 "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                "text_under_customer": "",
                 "text_before_items": "",
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20190239",
+                "VS": "20200014",
                 "KS": "0308",
+                "SS": "",
                 "currency": "CZK",
+                "currency_domestic": "CZK",
+                "search": "520200001 20200014 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": "1",
                 "total": "-1206.64",
                 "total_without_vat": "-1049.25",
+                "webhook_paid": "",
                 "X_1": "",
                 "X_2": "",
                 "X_3": "",
@@ -1262,28 +1436,31 @@ $result = $vyfakturuj_api->test();
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549939/941a9f/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549939/941a9f/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/nostamp/",
-                "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549939/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
                 "log": [
                     {
-                        "date": "2019-05-15 15:49:49",
-                        "text": "Vytvořen opravný doklad k {vfiid:549938:FA&nbsp;20190239} "
+                        "date": "2020-02-10 11:01:04",
+                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
                     },
                     {
-                        "date": "2019-05-15 15:49:49",
+                        "date": "2020-02-10 11:01:04",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
                 "related_documents": {
-                    "549938": {
-                        "id": "549938",
+                    "1115850": {
+                        "id": "1115850",
+                        "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
                         "id_payment_method": "10456",
                         "id_center": "0",
+                        "id_predkontace": "0",
+                        "id_cleneniDPH": "0",
                         "id_coupon": "0",
                         "id_parent": "0",
                         "id_eet_pokl": "0",
@@ -1292,10 +1469,10 @@ $result = $vyfakturuj_api->test();
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20190239",
-                        "date_created": "2019-05-15",
-                        "date_due": "2019-05-25",
-                        "date_taxable_supply": "2019-05-15",
+                        "number": "20200014",
+                        "date_created": "2020-02-10",
+                        "date_due": "2020-02-20",
+                        "date_taxable_supply": "2020-02-10",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -1303,33 +1480,60 @@ $result = $vyfakturuj_api->test();
                         "days_due": "10",
                         "supplier_IC": "00000019",
                         "supplier_DIC": "CZ00000019",
-                        "supplier_name": "Demo s.r.o.",
+                        "supplier_IDNUM3": "",
+                        "supplier_name": "Demo s.r.o. plátce",
                         "supplier_street": "Ukázková 123",
                         "supplier_city": "Ukázkov",
                         "supplier_zip": "12334",
                         "supplier_country": "Česká republika",
                         "supplier_country_code": "CZ",
+                        "supplier_contact_name": "Samuel L. Jackson",
+                        "supplier_contact_tel": "+123456789",
+                        "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                        "supplier_contact_web": "jackson.org",
                         "customer_IC": "123456789",
                         "customer_DIC": "CZ123456789",
+                        "customer_IDNUM3": "",
                         "customer_name": "Ukázková Firma",
+                        "customer_firstname": "",
+                        "customer_lastname": "",
                         "customer_street": "Pouliční 79/C",
                         "customer_city": "Praha",
                         "customer_zip": "10300",
                         "customer_country": "Česká republika",
+                        "customer_country_code": "",
+                        "customer_tel": "",
+                        "customer_delivery_company": "",
+                        "customer_delivery_firstname": "",
+                        "customer_delivery_lastname": "",
+                        "customer_delivery_street": "",
+                        "customer_delivery_city": "",
+                        "customer_delivery_zip": "",
+                        "customer_delivery_country_code": "",
+                        "customer_delivery_tel": "",
+                        "bank_account_number": "",
+                        "bank_IBAN": "",
+                        "bank_BIC": "",
                         "payment_method": "8",
                         "calculate_vat": "1",
                         "round_invoice": "1",
+                        "order_number": "",
                         "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                        "text_under_customer": "",
                         "text_before_items": "",
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20190239",
+                        "VS": "20200014",
                         "KS": "0308",
+                        "SS": "",
                         "currency": "CZK",
+                        "currency_domestic": "CZK",
+                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
+                        "webhook_paid": "",
                         "X_1": "",
                         "X_2": "",
                         "X_3": "",
@@ -1398,14 +1602,14 @@ $result = $vyfakturuj_api->test();
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549938/f60ed0/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549938/f60ed0/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/nostamp/",
-                        "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549938/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
                         "log": [
                             {
-                                "date": "2019-05-15 15:49:49",
+                                "date": "2020-02-10 11:01:03",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -1429,23 +1633,26 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "549939",
+                "id": "1115851",
+                "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28443",
                 "id_payment_method": "10456",
                 "id_center": "0",
+                "id_predkontace": "0",
+                "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "549938",
+                "id_parent": "1115850",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
                 "tags": "0",
                 "eet_status": "1",
                 "eet_data": "",
-                "number": "520190001",
-                "date_created": "2019-05-15",
-                "date_due": "2019-05-15",
-                "date_taxable_supply": "2019-05-15",
+                "number": "520200001",
+                "date_created": "2020-02-10",
+                "date_due": "2020-02-10",
+                "date_taxable_supply": "2020-02-10",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1453,33 +1660,60 @@ $result = $vyfakturuj_api->test();
                 "days_due": "0",
                 "supplier_IC": "00000019",
                 "supplier_DIC": "CZ00000019",
-                "supplier_name": "Demo s.r.o.",
+                "supplier_IDNUM3": "",
+                "supplier_name": "Demo s.r.o. plátce",
                 "supplier_street": "Ukázková 123",
                 "supplier_city": "Ukázkov",
                 "supplier_zip": "12334",
                 "supplier_country": "Česká republika",
                 "supplier_country_code": "CZ",
+                "supplier_contact_name": "Samuel L. Jackson",
+                "supplier_contact_tel": "+123456789",
+                "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                "supplier_contact_web": "jackson.org",
                 "customer_IC": "123456789",
                 "customer_DIC": "CZ123456789",
+                "customer_IDNUM3": "",
                 "customer_name": "Ukázková Firma",
+                "customer_firstname": "",
+                "customer_lastname": "",
                 "customer_street": "Pouliční 79/C",
                 "customer_city": "Praha",
                 "customer_zip": "10300",
                 "customer_country": "Česká republika",
+                "customer_country_code": "",
+                "customer_tel": "",
+                "customer_delivery_company": "",
+                "customer_delivery_firstname": "",
+                "customer_delivery_lastname": "",
+                "customer_delivery_street": "",
+                "customer_delivery_city": "",
+                "customer_delivery_zip": "",
+                "customer_delivery_country_code": "",
+                "customer_delivery_tel": "",
+                "bank_account_number": "",
+                "bank_IBAN": "",
+                "bank_BIC": "",
                 "payment_method": "8",
                 "calculate_vat": "1",
                 "round_invoice": "1",
+                "order_number": "",
                 "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                "text_under_customer": "",
                 "text_before_items": "",
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20190239",
+                "VS": "20200014",
                 "KS": "0308",
+                "SS": "",
                 "currency": "CZK",
+                "currency_domestic": "CZK",
+                "search": "520200001 20200014 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": "1",
                 "total": "-1206.64",
                 "total_without_vat": "-1049.25",
+                "webhook_paid": "",
                 "X_1": "",
                 "X_2": "",
                 "X_3": "",
@@ -1548,28 +1782,31 @@ $result = $vyfakturuj_api->test();
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549939/941a9f/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549939/941a9f/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/nostamp/",
-                "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549939/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
                 "log": [
                     {
-                        "date": "2019-05-15 15:49:49",
-                        "text": "Vytvořen opravný doklad k {vfiid:549938:FA&nbsp;20190239} "
+                        "date": "2020-02-10 11:01:04",
+                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
                     },
                     {
-                        "date": "2019-05-15 15:49:49",
+                        "date": "2020-02-10 11:01:04",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
                 "related_documents": {
-                    "549938": {
-                        "id": "549938",
+                    "1115850": {
+                        "id": "1115850",
+                        "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
                         "id_payment_method": "10456",
                         "id_center": "0",
+                        "id_predkontace": "0",
+                        "id_cleneniDPH": "0",
                         "id_coupon": "0",
                         "id_parent": "0",
                         "id_eet_pokl": "0",
@@ -1578,10 +1815,10 @@ $result = $vyfakturuj_api->test();
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20190239",
-                        "date_created": "2019-05-15",
-                        "date_due": "2019-05-25",
-                        "date_taxable_supply": "2019-05-15",
+                        "number": "20200014",
+                        "date_created": "2020-02-10",
+                        "date_due": "2020-02-20",
+                        "date_taxable_supply": "2020-02-10",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -1589,33 +1826,60 @@ $result = $vyfakturuj_api->test();
                         "days_due": "10",
                         "supplier_IC": "00000019",
                         "supplier_DIC": "CZ00000019",
-                        "supplier_name": "Demo s.r.o.",
+                        "supplier_IDNUM3": "",
+                        "supplier_name": "Demo s.r.o. plátce",
                         "supplier_street": "Ukázková 123",
                         "supplier_city": "Ukázkov",
                         "supplier_zip": "12334",
                         "supplier_country": "Česká republika",
                         "supplier_country_code": "CZ",
+                        "supplier_contact_name": "Samuel L. Jackson",
+                        "supplier_contact_tel": "+123456789",
+                        "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                        "supplier_contact_web": "jackson.org",
                         "customer_IC": "123456789",
                         "customer_DIC": "CZ123456789",
+                        "customer_IDNUM3": "",
                         "customer_name": "Ukázková Firma",
+                        "customer_firstname": "",
+                        "customer_lastname": "",
                         "customer_street": "Pouliční 79/C",
                         "customer_city": "Praha",
                         "customer_zip": "10300",
                         "customer_country": "Česká republika",
+                        "customer_country_code": "",
+                        "customer_tel": "",
+                        "customer_delivery_company": "",
+                        "customer_delivery_firstname": "",
+                        "customer_delivery_lastname": "",
+                        "customer_delivery_street": "",
+                        "customer_delivery_city": "",
+                        "customer_delivery_zip": "",
+                        "customer_delivery_country_code": "",
+                        "customer_delivery_tel": "",
+                        "bank_account_number": "",
+                        "bank_IBAN": "",
+                        "bank_BIC": "",
                         "payment_method": "8",
                         "calculate_vat": "1",
                         "round_invoice": "1",
+                        "order_number": "",
                         "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                        "text_under_customer": "",
                         "text_before_items": "",
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20190239",
+                        "VS": "20200014",
                         "KS": "0308",
+                        "SS": "",
                         "currency": "CZK",
+                        "currency_domestic": "CZK",
+                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
+                        "webhook_paid": "",
                         "X_1": "",
                         "X_2": "",
                         "X_3": "",
@@ -1684,14 +1948,14 @@ $result = $vyfakturuj_api->test();
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549938/f60ed0/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549938/f60ed0/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/nostamp/",
-                        "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549938/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
                         "log": [
                             {
-                                "date": "2019-05-15 15:49:49",
+                                "date": "2020-02-10 11:01:03",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -1724,23 +1988,26 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "549939",
+                "id": "1115851",
+                "id_identity": "0",
                 "id_customer": -1,
                 "id_number_series": "28443",
                 "id_payment_method": "10456",
                 "id_center": "0",
+                "id_predkontace": "0",
+                "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "549938",
+                "id_parent": "1115850",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
                 "tags": "0",
                 "eet_status": "1",
                 "eet_data": "",
-                "number": "520190001",
-                "date_created": "2019-05-15",
-                "date_due": "2019-05-15",
-                "date_taxable_supply": "2019-05-15",
+                "number": "520200001",
+                "date_created": "2020-02-10",
+                "date_due": "2020-02-10",
+                "date_taxable_supply": "2020-02-10",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1748,33 +2015,60 @@ $result = $vyfakturuj_api->test();
                 "days_due": "0",
                 "supplier_IC": "00000019",
                 "supplier_DIC": "CZ00000019",
-                "supplier_name": "Demo s.r.o.",
+                "supplier_IDNUM3": "",
+                "supplier_name": "Demo s.r.o. plátce",
                 "supplier_street": "Ukázková 123",
                 "supplier_city": "Ukázkov",
                 "supplier_zip": "12334",
                 "supplier_country": "Česká republika",
                 "supplier_country_code": "CZ",
+                "supplier_contact_name": "Samuel L. Jackson",
+                "supplier_contact_tel": "+123456789",
+                "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                "supplier_contact_web": "jackson.org",
                 "customer_IC": "123456789",
                 "customer_DIC": "CZ123456789",
+                "customer_IDNUM3": "",
                 "customer_name": "Ukázková Firma po úpravě",
+                "customer_firstname": "",
+                "customer_lastname": "",
                 "customer_street": "Pouliční 79/C",
                 "customer_city": "Praha",
                 "customer_zip": "10300",
                 "customer_country": "Česká republika",
+                "customer_country_code": "",
+                "customer_tel": "",
+                "customer_delivery_company": "",
+                "customer_delivery_firstname": "",
+                "customer_delivery_lastname": "",
+                "customer_delivery_street": "",
+                "customer_delivery_city": "",
+                "customer_delivery_zip": "",
+                "customer_delivery_country_code": "",
+                "customer_delivery_tel": "",
+                "bank_account_number": "",
+                "bank_IBAN": "",
+                "bank_BIC": "",
                 "payment_method": "8",
                 "calculate_vat": "1",
                 "round_invoice": "1",
+                "order_number": "",
                 "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                "text_under_customer": "",
                 "text_before_items": "",
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20190239",
+                "VS": "20200014",
                 "KS": "0308",
+                "SS": "",
                 "currency": "CZK",
+                "currency_domestic": "CZK",
+                "search": "520200001 20200014 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": "1",
                 "total": "-1206.64",
                 "total_without_vat": "-1049.25",
+                "webhook_paid": "",
                 "X_1": "",
                 "X_2": "",
                 "X_3": "",
@@ -1810,28 +2104,31 @@ $result = $vyfakturuj_api->test();
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549939/941a9f/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549939/941a9f/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/nostamp/",
-                "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549939/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
                 "log": [
                     {
-                        "date": "2019-05-15 15:49:49",
-                        "text": "Vytvořen opravný doklad k {vfiid:549938:FA&nbsp;20190239} "
+                        "date": "2020-02-10 11:01:04",
+                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
                     },
                     {
-                        "date": "2019-05-15 15:49:49",
+                        "date": "2020-02-10 11:01:04",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
                 "related_documents": {
-                    "549938": {
-                        "id": "549938",
+                    "1115850": {
+                        "id": "1115850",
+                        "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
                         "id_payment_method": "10456",
                         "id_center": "0",
+                        "id_predkontace": "0",
+                        "id_cleneniDPH": "0",
                         "id_coupon": "0",
                         "id_parent": "0",
                         "id_eet_pokl": "0",
@@ -1840,10 +2137,10 @@ $result = $vyfakturuj_api->test();
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20190239",
-                        "date_created": "2019-05-15",
-                        "date_due": "2019-05-25",
-                        "date_taxable_supply": "2019-05-15",
+                        "number": "20200014",
+                        "date_created": "2020-02-10",
+                        "date_due": "2020-02-20",
+                        "date_taxable_supply": "2020-02-10",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -1851,33 +2148,60 @@ $result = $vyfakturuj_api->test();
                         "days_due": "10",
                         "supplier_IC": "00000019",
                         "supplier_DIC": "CZ00000019",
-                        "supplier_name": "Demo s.r.o.",
+                        "supplier_IDNUM3": "",
+                        "supplier_name": "Demo s.r.o. plátce",
                         "supplier_street": "Ukázková 123",
                         "supplier_city": "Ukázkov",
                         "supplier_zip": "12334",
                         "supplier_country": "Česká republika",
                         "supplier_country_code": "CZ",
+                        "supplier_contact_name": "Samuel L. Jackson",
+                        "supplier_contact_tel": "+123456789",
+                        "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                        "supplier_contact_web": "jackson.org",
                         "customer_IC": "123456789",
                         "customer_DIC": "CZ123456789",
+                        "customer_IDNUM3": "",
                         "customer_name": "Ukázková Firma",
+                        "customer_firstname": "",
+                        "customer_lastname": "",
                         "customer_street": "Pouliční 79/C",
                         "customer_city": "Praha",
                         "customer_zip": "10300",
                         "customer_country": "Česká republika",
+                        "customer_country_code": "",
+                        "customer_tel": "",
+                        "customer_delivery_company": "",
+                        "customer_delivery_firstname": "",
+                        "customer_delivery_lastname": "",
+                        "customer_delivery_street": "",
+                        "customer_delivery_city": "",
+                        "customer_delivery_zip": "",
+                        "customer_delivery_country_code": "",
+                        "customer_delivery_tel": "",
+                        "bank_account_number": "",
+                        "bank_IBAN": "",
+                        "bank_BIC": "",
                         "payment_method": "8",
                         "calculate_vat": "1",
                         "round_invoice": "1",
+                        "order_number": "",
                         "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                        "text_under_customer": "",
                         "text_before_items": "",
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20190239",
+                        "VS": "20200014",
                         "KS": "0308",
+                        "SS": "",
                         "currency": "CZK",
+                        "currency_domestic": "CZK",
+                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
+                        "webhook_paid": "",
                         "X_1": "",
                         "X_2": "",
                         "X_3": "",
@@ -1946,14 +2270,14 @@ $result = $vyfakturuj_api->test();
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549938/f60ed0/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549938/f60ed0/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/nostamp/",
-                        "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549938/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
                         "log": [
                             {
-                                "date": "2019-05-15 15:49:49",
+                                "date": "2020-02-10 11:01:03",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -2070,9 +2394,9 @@ $result = $vyfakturuj_api->test();
                     "to": "demo@vyfakturuj.cz, demo.copy@vyfakturuj.cz",
                     "cc": "",
                     "bcc": "",
-                    "subject": "Opravný daňový doklad č. 520190001 - uhrazena",
+                    "subject": "Opravný daňový doklad č. 520200001 - uhrazena",
                     "pdfAttachment": true,
-                    "body": "Dobrý den\r\n\r\nVaše platba byla přijata (Opravný daňový doklad č. 520190001).\r\n\r\nOpravný daňový doklad č. 520190001 naleznete na adrese: https://www.vyfakturuj.cz/print/document/549939/941a9f/\r\n\r\nS pozdravem\r\n\r\nDemo s.r.o."
+                    "body": "Dobrý den\r\n\r\nVaše platba byla přijata (Opravný daňový doklad č. 520200001).\r\n\r\nOpravný daňový doklad č. 520200001 naleznete na adrese: https://www.vyfakturuj.cz/print/document/1115851/073ff9/\r\n\r\nS pozdravem\r\n\r\nDemo s.r.o. plátce"
                 }
             }
 
@@ -2096,23 +2420,26 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "549939",
+                "id": "1115851",
+                "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28443",
                 "id_payment_method": "10456",
                 "id_center": "0",
+                "id_predkontace": "0",
+                "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "549938",
+                "id_parent": "1115850",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
                 "tags": "0",
                 "eet_status": "1",
                 "eet_data": "",
-                "number": "520190001",
-                "date_created": "2019-05-15",
-                "date_due": "2019-05-15",
-                "date_taxable_supply": "2019-05-15",
+                "number": "520200001",
+                "date_created": "2020-02-10",
+                "date_due": "2020-02-10",
+                "date_taxable_supply": "2020-02-10",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -2120,33 +2447,60 @@ $result = $vyfakturuj_api->test();
                 "days_due": "0",
                 "supplier_IC": "00000019",
                 "supplier_DIC": "CZ00000019",
-                "supplier_name": "Demo s.r.o.",
+                "supplier_IDNUM3": "",
+                "supplier_name": "Demo s.r.o. plátce",
                 "supplier_street": "Ukázková 123",
                 "supplier_city": "Ukázkov",
                 "supplier_zip": "12334",
                 "supplier_country": "Česká republika",
                 "supplier_country_code": "CZ",
+                "supplier_contact_name": "Samuel L. Jackson",
+                "supplier_contact_tel": "+123456789",
+                "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                "supplier_contact_web": "jackson.org",
                 "customer_IC": "123456789",
                 "customer_DIC": "CZ123456789",
+                "customer_IDNUM3": "",
                 "customer_name": "Ukázková Firma po úpravě",
+                "customer_firstname": "",
+                "customer_lastname": "",
                 "customer_street": "Pouliční 79/C",
                 "customer_city": "Praha",
                 "customer_zip": "10300",
                 "customer_country": "Česká republika",
+                "customer_country_code": "",
+                "customer_tel": "",
+                "customer_delivery_company": "",
+                "customer_delivery_firstname": "",
+                "customer_delivery_lastname": "",
+                "customer_delivery_street": "",
+                "customer_delivery_city": "",
+                "customer_delivery_zip": "",
+                "customer_delivery_country_code": "",
+                "customer_delivery_tel": "",
+                "bank_account_number": "",
+                "bank_IBAN": "",
+                "bank_BIC": "",
                 "payment_method": "8",
                 "calculate_vat": "1",
                 "round_invoice": "1",
+                "order_number": "",
                 "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                "text_under_customer": "",
                 "text_before_items": "",
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20190239",
+                "VS": "20200014",
                 "KS": "0308",
+                "SS": "",
                 "currency": "CZK",
+                "currency_domestic": "CZK",
+                "search": "520200001 20200014 123456789 ukazkova firma po uprave 1138.79 sterac na ponorku",
                 "exchange_rate": "1",
                 "total": "1138.79",
                 "total_without_vat": "990.25",
+                "webhook_paid": "",
                 "X_1": "",
                 "X_2": "",
                 "X_3": "",
@@ -2179,32 +2533,35 @@ $result = $vyfakturuj_api->test();
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549939/941a9f/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549939/941a9f/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549939/941a9f/nostamp/",
-                "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549939/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
                 "log": [
                     {
-                        "date": "2019-05-15 15:49:49",
-                        "text": "Vytvořen opravný doklad k {vfiid:549938:FA&nbsp;20190239} "
+                        "date": "2020-02-10 11:01:04",
+                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
                     },
                     {
-                        "date": "2019-05-15 15:49:49",
+                        "date": "2020-02-10 11:01:04",
                         "text": "Vytvoření dokumentu."
                     },
                     {
-                        "date": "2019-05-15 15:49:50",
+                        "date": "2020-02-10 11:01:04",
                         "text": "Uhrazeno 1&nbsp;138,79&nbsp;Kč k datu 31.12.2016."
                     }
                 ],
                 "related_documents": {
-                    "549938": {
-                        "id": "549938",
+                    "1115850": {
+                        "id": "1115850",
+                        "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
                         "id_payment_method": "10456",
                         "id_center": "0",
+                        "id_predkontace": "0",
+                        "id_cleneniDPH": "0",
                         "id_coupon": "0",
                         "id_parent": "0",
                         "id_eet_pokl": "0",
@@ -2213,10 +2570,10 @@ $result = $vyfakturuj_api->test();
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20190239",
-                        "date_created": "2019-05-15",
-                        "date_due": "2019-05-25",
-                        "date_taxable_supply": "2019-05-15",
+                        "number": "20200014",
+                        "date_created": "2020-02-10",
+                        "date_due": "2020-02-20",
+                        "date_taxable_supply": "2020-02-10",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -2224,33 +2581,60 @@ $result = $vyfakturuj_api->test();
                         "days_due": "10",
                         "supplier_IC": "00000019",
                         "supplier_DIC": "CZ00000019",
-                        "supplier_name": "Demo s.r.o.",
+                        "supplier_IDNUM3": "",
+                        "supplier_name": "Demo s.r.o. plátce",
                         "supplier_street": "Ukázková 123",
                         "supplier_city": "Ukázkov",
                         "supplier_zip": "12334",
                         "supplier_country": "Česká republika",
                         "supplier_country_code": "CZ",
+                        "supplier_contact_name": "Samuel L. Jackson",
+                        "supplier_contact_tel": "+123456789",
+                        "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                        "supplier_contact_web": "jackson.org",
                         "customer_IC": "123456789",
                         "customer_DIC": "CZ123456789",
+                        "customer_IDNUM3": "",
                         "customer_name": "Ukázková Firma",
+                        "customer_firstname": "",
+                        "customer_lastname": "",
                         "customer_street": "Pouliční 79/C",
                         "customer_city": "Praha",
                         "customer_zip": "10300",
                         "customer_country": "Česká republika",
+                        "customer_country_code": "",
+                        "customer_tel": "",
+                        "customer_delivery_company": "",
+                        "customer_delivery_firstname": "",
+                        "customer_delivery_lastname": "",
+                        "customer_delivery_street": "",
+                        "customer_delivery_city": "",
+                        "customer_delivery_zip": "",
+                        "customer_delivery_country_code": "",
+                        "customer_delivery_tel": "",
+                        "bank_account_number": "",
+                        "bank_IBAN": "",
+                        "bank_BIC": "",
                         "payment_method": "8",
                         "calculate_vat": "1",
                         "round_invoice": "1",
+                        "order_number": "",
                         "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                        "text_under_customer": "",
                         "text_before_items": "",
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20190239",
+                        "VS": "20200014",
                         "KS": "0308",
+                        "SS": "",
                         "currency": "CZK",
+                        "currency_domestic": "CZK",
+                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
+                        "webhook_paid": "",
                         "X_1": "",
                         "X_2": "",
                         "X_3": "",
@@ -2319,14 +2703,14 @@ $result = $vyfakturuj_api->test();
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549938/f60ed0/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549938/f60ed0/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/nostamp/",
-                        "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549938/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
                         "log": [
                             {
-                                "date": "2019-05-15 15:49:49",
+                                "date": "2020-02-10 11:01:03",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -2373,11 +2757,14 @@ $result = $vyfakturuj_api->test();
 
             [
                 {
-                    "id": "549938",
+                    "id": "1115850",
+                    "id_identity": "0",
                     "id_customer": "-1",
                     "id_number_series": "28437",
                     "id_payment_method": "10456",
                     "id_center": "0",
+                    "id_predkontace": "0",
+                    "id_cleneniDPH": "0",
                     "id_coupon": "0",
                     "id_parent": "0",
                     "id_eet_pokl": "0",
@@ -2386,10 +2773,10 @@ $result = $vyfakturuj_api->test();
                     "tags": "0",
                     "eet_status": "1",
                     "eet_data": "",
-                    "number": "20190239",
-                    "date_created": "2019-05-15",
-                    "date_due": "2019-05-25",
-                    "date_taxable_supply": "2019-05-15",
+                    "number": "20200014",
+                    "date_created": "2020-02-10",
+                    "date_due": "2020-02-20",
+                    "date_taxable_supply": "2020-02-10",
                     "date_paid": "0000-00-00",
                     "date_reminder": "0000-00-00",
                     "date_reminder_2": "0000-00-00",
@@ -2397,33 +2784,60 @@ $result = $vyfakturuj_api->test();
                     "days_due": "10",
                     "supplier_IC": "00000019",
                     "supplier_DIC": "CZ00000019",
-                    "supplier_name": "Demo s.r.o.",
+                    "supplier_IDNUM3": "",
+                    "supplier_name": "Demo s.r.o. plátce",
                     "supplier_street": "Ukázková 123",
                     "supplier_city": "Ukázkov",
                     "supplier_zip": "12334",
                     "supplier_country": "Česká republika",
                     "supplier_country_code": "CZ",
+                    "supplier_contact_name": "Samuel L. Jackson",
+                    "supplier_contact_tel": "+123456789",
+                    "supplier_contact_mail": "samuel.l.jackson@bad.mf",
+                    "supplier_contact_web": "jackson.org",
                     "customer_IC": "123456789",
                     "customer_DIC": "CZ123456789",
+                    "customer_IDNUM3": "",
                     "customer_name": "Ukázková Firma",
+                    "customer_firstname": "",
+                    "customer_lastname": "",
                     "customer_street": "Pouliční 79/C",
                     "customer_city": "Praha",
                     "customer_zip": "10300",
                     "customer_country": "Česká republika",
+                    "customer_country_code": "",
+                    "customer_tel": "",
+                    "customer_delivery_company": "",
+                    "customer_delivery_firstname": "",
+                    "customer_delivery_lastname": "",
+                    "customer_delivery_street": "",
+                    "customer_delivery_city": "",
+                    "customer_delivery_zip": "",
+                    "customer_delivery_country_code": "",
+                    "customer_delivery_tel": "",
+                    "bank_account_number": "",
+                    "bank_IBAN": "",
+                    "bank_BIC": "",
                     "payment_method": "8",
                     "calculate_vat": "1",
                     "round_invoice": "1",
+                    "order_number": "",
                     "text_under_subscriber": "Doplňkový text - zobrazí se pod dodavatelem (vzor)",
+                    "text_under_customer": "",
                     "text_before_items": "",
                     "text_invoice_footer": "",
                     "mail_to": [],
                     "language": "cs",
-                    "VS": "20190239",
+                    "VS": "20200014",
                     "KS": "0308",
+                    "SS": "",
                     "currency": "CZK",
+                    "currency_domestic": "CZK",
+                    "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                     "exchange_rate": 1,
                     "total": "1206.64",
                     "total_without_vat": "1049.25",
+                    "webhook_paid": "",
                     "X_1": "",
                     "X_2": "",
                     "X_3": "",
@@ -2492,14 +2906,14 @@ $result = $vyfakturuj_api->test();
                     "storno": false,
                     "moss": false,
                     "need_attention": false,
-                    "url_public_webpage": "https://www.vyfakturuj.cz/print/document/549938/f60ed0/",
-                    "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/549938/f60ed0/",
-                    "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/download/",
-                    "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/549938/f60ed0/nostamp/",
-                    "url_app_detail": "http://app.vyfakturuj.czlc/faktury/detail/549938/",
+                    "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
+                    "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
+                    "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
+                    "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
+                    "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
                     "log": [
                         {
-                            "date": "2019-05-15 15:49:49",
+                            "date": "2020-02-10 11:01:03",
                             "text": "Vytvoření dokumentu."
                         }
                     ],
@@ -2553,6 +2967,18 @@ $result = $vyfakturuj_api->test();
         <td>R/W</td>
     </tr>
     <tr>
+        <td>firstname</td>
+        <td>string100</td>
+        <td>Jméno</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>lastname</td>
+        <td>string100</td>
+        <td>Příjmení</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
         <td>street</td>
         <td>string50</td>
         <td>Ulice</td>
@@ -2574,6 +3000,54 @@ $result = $vyfakturuj_api->test();
         <td>country_code</td>
         <td>string20</td>
         <td>Kód země (ISO 3166-2)</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_company</td>
+        <td>string100</td>
+        <td>Doručovací adresa: Název firmy</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_firstname</td>
+        <td>string100</td>
+        <td>Doručovací adresa: Jméno</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_lastname</td>
+        <td>string100</td>
+        <td>Doručovací adresa: Příjmení</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_street</td>
+        <td>string50</td>
+        <td>Doručovací adresa: Ulice</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_city</td>
+        <td>string50</td>
+        <td>Doručovací adresa: Město</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_zip</td>
+        <td>int</td>
+        <td>Doručovací adresa: PSČ</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_country_code</td>
+        <td>string20</td>
+        <td>Doručovací adresa: Kód země (ISO 3166-2)</td>
+        <td>R/W</td>
+    </tr>
+    <tr>
+        <td>delivery_tel</td>
+        <td>string30</td>
+        <td>Doručovací adresa: Telefon</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -2699,7 +3173,7 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": 178921,
+                "id": 356545,
                 "IC": "123456789",
                 "DIC": "",
                 "name": "#API - Ukázkový kontakt",
@@ -2732,7 +3206,7 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "178921",
+                "id": "356545",
                 "IC": "123456789",
                 "DIC": "",
                 "name": "#API - Ukázkový kontakt",
@@ -2768,7 +3242,7 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "178921",
+                "id": "356545",
                 "IC": "123456789",
                 "DIC": "",
                 "name": "#API - Ukázkový kontakt - po úpravě",
@@ -3002,6 +3476,7 @@ $result = $vyfakturuj_api->test();
             <code>2</code> Položky mají koncovou cenu s DPH<br>
             <code>3</code> DPH je účtováno ve speciálním režimu<br>
             <code>4</code> DPH je v režimu prenesené daňové povinnosti<br>
+            <code>6</code> Daň odvede zákazník<br>
             <code>5</code> Neplátce DPH
         </blockquote></td>
         <td>R/W</td>
@@ -3012,9 +3487,7 @@ $result = $vyfakturuj_api->test();
         <td>Zaokrouhlení dokumentu
         <blockquote>
             <code>1</code> Nezaokrouhlovat<br>
-            <code>2</code> Háleřové vyrovnání<br>
-            <code>4</code> Zaokrouhlit nahoru<br>
-            <code>3</code> Zaokrouhlit DPH
+            <code>2</code> Zaokrouhlit (háleřové vyrovnání)
         </blockquote></td>
         <td>R/W</td>
     </tr>
@@ -3178,7 +3651,7 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": 4022,
+                "id": 10787,
                 "id_customer": "0",
                 "name": "#API - Test šablony1",
                 "type": "1",
@@ -3252,7 +3725,7 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "4022",
+                "id": "10787",
                 "id_customer": "0",
                 "name": "#API - Test šablony1",
                 "type": "1",
@@ -3329,7 +3802,7 @@ $result = $vyfakturuj_api->test();
     + Body
 
             {
-                "id": "4022",
+                "id": "10787",
                 "id_customer": "0",
                 "name": "#API - Změna názvu",
                 "type": "1",
@@ -3446,6 +3919,7 @@ $result = $vyfakturuj_api->test();
             <code>8</code> Online kartou<br>
             <code>64</code> Zrychlený převod<br>
             <code>128</code> PayPal<br>
+            <code>32</code> Zápočtem<br>
             <code>256</code> Vlastní
         </blockquote></td>
         <td>R</td>
@@ -3485,6 +3959,14 @@ $result = $vyfakturuj_api->test();
 
             [
                 {
+                    "id_payment_method": "10380",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Fio CZK"
+                },
+                {
                     "id_payment_method": "33665",
                     "id_eet_pokl": "0",
                     "flags": "0",
@@ -3509,16 +3991,8 @@ $result = $vyfakturuj_api->test();
                     "name": "PayPal"
                 },
                 {
-                    "id_payment_method": "10380",
-                    "id_eet_pokl": "0",
-                    "flags": "0",
-                    "type": "1",
-                    "provider": "0",
-                    "name": "Bankovní převod"
-                },
-                {
                     "id_payment_method": "8437",
-                    "id_eet_pokl": "0",
+                    "id_eet_pokl": "61",
                     "flags": "0",
                     "type": "2",
                     "provider": "0",
@@ -3612,20 +4086,6 @@ $result = $vyfakturuj_api->test();
                     "pattern": "{yyyy}{cccc}"
                 },
                 {
-                    "id_number_series": "53970",
-                    "id_number_series_child": "0",
-                    "type": "1",
-                    "name": "Faktura 2",
-                    "pattern": "{c}/{yyyy}"
-                },
-                {
-                    "id_number_series": "105505",
-                    "id_number_series_child": "0",
-                    "type": "1",
-                    "name": "test",
-                    "pattern": "{yy}{ccc}"
-                },
-                {
                     "id_number_series": "28438",
                     "id_number_series_child": "0",
                     "type": "2",
@@ -3654,18 +4114,18 @@ $result = $vyfakturuj_api->test();
                     "pattern": "6{yyyy}{cccc}"
                 },
                 {
-                    "id_number_series": "28443",
-                    "id_number_series_child": "0",
-                    "type": "32",
-                    "name": "Opravný daňový doklad",
-                    "pattern": "5{yyyy}{cccc}"
-                },
-                {
                     "id_number_series": "28442",
                     "id_number_series_child": "0",
                     "type": "64",
                     "name": "Příjmový doklad",
                     "pattern": "6{yyyy}{cccc}"
+                },
+                {
+                    "id_number_series": "28443",
+                    "id_number_series_child": "0",
+                    "type": "32",
+                    "name": "Opravný daňový doklad",
+                    "pattern": "5{yyyy}{cccc}"
                 },
                 {
                     "id_number_series": "28444",
@@ -3689,10 +4149,38 @@ $result = $vyfakturuj_api->test();
                     "pattern": "N{yyyy}{cccc}"
                 },
                 {
+                    "id_number_series": "53970",
+                    "id_number_series_child": "0",
+                    "type": "1",
+                    "name": "Faktura 2",
+                    "pattern": "{c}/{yyyy}"
+                },
+                {
+                    "id_number_series": "105505",
+                    "id_number_series_child": "0",
+                    "type": "1",
+                    "name": "test",
+                    "pattern": "{yy}{ccc}"
+                },
+                {
                     "id_number_series": "129272",
                     "id_number_series_child": "0",
                     "type": "1024",
                     "name": "N2",
                     "pattern": "3-{yyyy}-{cccc}"
+                },
+                {
+                    "id_number_series": "168035",
+                    "id_number_series_child": "0",
+                    "type": "4",
+                    "name": "UNI",
+                    "pattern": "PF{yyyy}{ccc}"
+                },
+                {
+                    "id_number_series": "170162",
+                    "id_number_series_child": "0",
+                    "type": "1",
+                    "name": "test 03/04",
+                    "pattern": "{y-12m} iFV9{cccc}"
                 }
             ]
