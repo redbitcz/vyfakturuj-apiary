@@ -768,7 +768,6 @@ https://api.simpleshop.cz/2.0/
             <code>8</code> Snížená<br>
             <code>16</code> Druhá snížená<br>
             <code>32</code> Nulová<br>
-            <code>64</code> Neplátce - není daň<br>
             <code>128</code> Třetí snížená
         </blockquote></td>
         <td>R/W</td>
@@ -1049,7 +1048,7 @@ https://api.simpleshop.cz/2.0/
     <tr>
         <td>filter</td>
         <td>string</td>
-        <td>(BETA) Filtrování dokladů, Syntaxe {NAZEV_SLOUPCE}~{OPERATOR}~{HODNOTA}|{NAZEV_SLOUPCE}~{OPERATOR}~{HODNOTA} ...</td>
+        <td>(BETA) Filtrování dokladů, Syntaxe {NAZEV_SLOUPCE}~{OPERATOR}~{HODNOTA}|AND|{NAZEV_SLOUPCE}~{OPERATOR}~{HODNOTA} ...</td>
         <td>R/W</td>
     </tr>
     <tr>
@@ -1059,6 +1058,30 @@ https://api.simpleshop.cz/2.0/
         <td>R/W</td>
     </tr>
 </table>
+
+### Filtrování
+
+<table>
+    <tr>
+        <td>{NAZEV_SLOUPCE}</td>
+        <td>Hodnota z tabulky "GET parametry při vyhledávání dokladu"</td>
+    </tr>
+    <tr>
+        <td>{OPERATOR}</td>
+        <td>
+            <ul>
+                <li>LT (less than) "<"</li>
+                <li>GT (greater than) ">"</li>
+                <li>LTEQ (less than/equal) "<="</li>
+                <li>GTEQ (greater than/equal) ">="</li>
+                <li>CTSTR (contains string) "LIKE"</li>
+                <li>CTBIT (contains bits) "&"</li>
+                <li>EQ (equals) "="</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<a href="https://github.com/redbitcz/vyfakturuj-api-php/blob/master/examples/09-invoice_search.php">Ukázka použití filtru</a>
 
 
 ## Vytvoření faktury [/invoice/]
@@ -1105,7 +1128,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": 1115850,
+                "id": 1288534,
                 "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28437",
@@ -1121,10 +1144,10 @@ https://api.simpleshop.cz/2.0/
                 "tags": "0",
                 "eet_status": "1",
                 "eet_data": "",
-                "number": "20200014",
-                "date_created": "2020-02-10",
-                "date_due": "2020-02-20",
-                "date_taxable_supply": "2020-02-10",
+                "number": "20200036",
+                "date_created": "2020-04-30",
+                "date_due": "2020-05-10",
+                "date_taxable_supply": "2020-04-30",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1176,12 +1199,12 @@ https://api.simpleshop.cz/2.0/
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20200014",
+                "VS": "20200036",
                 "KS": "0308",
                 "SS": "",
                 "currency": "CZK",
                 "currency_domestic": "CZK",
-                "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                "search": "20200036 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": 1,
                 "total": "1206.64",
                 "total_without_vat": "1049.25",
@@ -1254,14 +1277,14 @@ https://api.simpleshop.cz/2.0/
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
-                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288534/773a78/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288534/773a78/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288534/",
                 "log": [
                     {
-                        "date": "2020-02-10 11:01:03",
+                        "date": "2020-04-30 14:01:25",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
@@ -1275,7 +1298,7 @@ https://api.simpleshop.cz/2.0/
 
         {
             "type": 32,
-            "id_parent": 1115850
+            "id_parent": 1288534
         }
 
 + Response 200 (application/json)
@@ -1287,7 +1310,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": 1115851,
+                "id": 1288535,
                 "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28443",
@@ -1296,7 +1319,7 @@ https://api.simpleshop.cz/2.0/
                 "id_predkontace": "0",
                 "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "1115850",
+                "id_parent": "1288534",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
@@ -1304,9 +1327,9 @@ https://api.simpleshop.cz/2.0/
                 "eet_status": "1",
                 "eet_data": "",
                 "number": "520200001",
-                "date_created": "2020-02-10",
-                "date_due": "2020-02-10",
-                "date_taxable_supply": "2020-02-10",
+                "date_created": "2020-04-30",
+                "date_due": "2020-04-30",
+                "date_taxable_supply": "2020-04-30",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1358,12 +1381,12 @@ https://api.simpleshop.cz/2.0/
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20200014",
+                "VS": "20200036",
                 "KS": "0308",
                 "SS": "",
                 "currency": "CZK",
                 "currency_domestic": "CZK",
-                "search": "520200001 20200014 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                "search": "520200001 20200036 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": "1",
                 "total": "-1206.64",
                 "total_without_vat": "-1049.25",
@@ -1436,24 +1459,24 @@ https://api.simpleshop.cz/2.0/
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
-                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288535/ed8db6/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288535/ed8db6/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288535/",
                 "log": [
                     {
-                        "date": "2020-02-10 11:01:04",
-                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
+                        "date": "2020-04-30 14:01:25",
+                        "text": "Vytvořen opravný doklad k {vfiid:1288534:FA 20200036} "
                     },
                     {
-                        "date": "2020-02-10 11:01:04",
+                        "date": "2020-04-30 14:01:25",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
                 "related_documents": {
-                    "1115850": {
-                        "id": "1115850",
+                    "1288534": {
+                        "id": "1288534",
                         "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
@@ -1469,10 +1492,10 @@ https://api.simpleshop.cz/2.0/
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20200014",
-                        "date_created": "2020-02-10",
-                        "date_due": "2020-02-20",
-                        "date_taxable_supply": "2020-02-10",
+                        "number": "20200036",
+                        "date_created": "2020-04-30",
+                        "date_due": "2020-05-10",
+                        "date_taxable_supply": "2020-04-30",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -1524,12 +1547,12 @@ https://api.simpleshop.cz/2.0/
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20200014",
+                        "VS": "20200036",
                         "KS": "0308",
                         "SS": "",
                         "currency": "CZK",
                         "currency_domestic": "CZK",
-                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                        "search": "20200036 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
@@ -1602,14 +1625,14 @@ https://api.simpleshop.cz/2.0/
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
-                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288534/773a78/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288534/773a78/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288534/",
                         "log": [
                             {
-                                "date": "2020-02-10 11:01:03",
+                                "date": "2020-04-30 14:01:25",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -1633,7 +1656,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "1115851",
+                "id": "1288535",
                 "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28443",
@@ -1642,7 +1665,7 @@ https://api.simpleshop.cz/2.0/
                 "id_predkontace": "0",
                 "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "1115850",
+                "id_parent": "1288534",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
@@ -1650,9 +1673,9 @@ https://api.simpleshop.cz/2.0/
                 "eet_status": "1",
                 "eet_data": "",
                 "number": "520200001",
-                "date_created": "2020-02-10",
-                "date_due": "2020-02-10",
-                "date_taxable_supply": "2020-02-10",
+                "date_created": "2020-04-30",
+                "date_due": "2020-04-30",
+                "date_taxable_supply": "2020-04-30",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -1704,12 +1727,12 @@ https://api.simpleshop.cz/2.0/
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20200014",
+                "VS": "20200036",
                 "KS": "0308",
                 "SS": "",
                 "currency": "CZK",
                 "currency_domestic": "CZK",
-                "search": "520200001 20200014 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                "search": "520200001 20200036 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": "1",
                 "total": "-1206.64",
                 "total_without_vat": "-1049.25",
@@ -1782,24 +1805,24 @@ https://api.simpleshop.cz/2.0/
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
-                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288535/ed8db6/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288535/ed8db6/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288535/",
                 "log": [
                     {
-                        "date": "2020-02-10 11:01:04",
-                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
+                        "date": "2020-04-30 14:01:25",
+                        "text": "Vytvořen opravný doklad k {vfiid:1288534:FA 20200036} "
                     },
                     {
-                        "date": "2020-02-10 11:01:04",
+                        "date": "2020-04-30 14:01:25",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
                 "related_documents": {
-                    "1115850": {
-                        "id": "1115850",
+                    "1288534": {
+                        "id": "1288534",
                         "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
@@ -1815,10 +1838,10 @@ https://api.simpleshop.cz/2.0/
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20200014",
-                        "date_created": "2020-02-10",
-                        "date_due": "2020-02-20",
-                        "date_taxable_supply": "2020-02-10",
+                        "number": "20200036",
+                        "date_created": "2020-04-30",
+                        "date_due": "2020-05-10",
+                        "date_taxable_supply": "2020-04-30",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -1870,12 +1893,12 @@ https://api.simpleshop.cz/2.0/
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20200014",
+                        "VS": "20200036",
                         "KS": "0308",
                         "SS": "",
                         "currency": "CZK",
                         "currency_domestic": "CZK",
-                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                        "search": "20200036 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
@@ -1948,14 +1971,14 @@ https://api.simpleshop.cz/2.0/
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
-                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288534/773a78/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288534/773a78/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288534/",
                         "log": [
                             {
-                                "date": "2020-02-10 11:01:03",
+                                "date": "2020-04-30 14:01:25",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -1988,7 +2011,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "1115851",
+                "id": "1288535",
                 "id_identity": "0",
                 "id_customer": -1,
                 "id_number_series": "28443",
@@ -1997,7 +2020,7 @@ https://api.simpleshop.cz/2.0/
                 "id_predkontace": "0",
                 "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "1115850",
+                "id_parent": "1288534",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
@@ -2005,9 +2028,9 @@ https://api.simpleshop.cz/2.0/
                 "eet_status": "1",
                 "eet_data": "",
                 "number": "520200001",
-                "date_created": "2020-02-10",
-                "date_due": "2020-02-10",
-                "date_taxable_supply": "2020-02-10",
+                "date_created": "2020-04-30",
+                "date_due": "2020-04-30",
+                "date_taxable_supply": "2020-04-30",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -2059,12 +2082,12 @@ https://api.simpleshop.cz/2.0/
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20200014",
+                "VS": "20200036",
                 "KS": "0308",
                 "SS": "",
                 "currency": "CZK",
                 "currency_domestic": "CZK",
-                "search": "520200001 20200014 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                "search": "520200001 20200036 123456789 ukazkova firma -1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                 "exchange_rate": "1",
                 "total": "-1206.64",
                 "total_without_vat": "-1049.25",
@@ -2104,24 +2127,24 @@ https://api.simpleshop.cz/2.0/
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
-                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288535/ed8db6/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288535/ed8db6/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288535/",
                 "log": [
                     {
-                        "date": "2020-02-10 11:01:04",
-                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
+                        "date": "2020-04-30 14:01:25",
+                        "text": "Vytvořen opravný doklad k {vfiid:1288534:FA 20200036} "
                     },
                     {
-                        "date": "2020-02-10 11:01:04",
+                        "date": "2020-04-30 14:01:25",
                         "text": "Vytvoření dokumentu."
                     }
                 ],
                 "related_documents": {
-                    "1115850": {
-                        "id": "1115850",
+                    "1288534": {
+                        "id": "1288534",
                         "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
@@ -2137,10 +2160,10 @@ https://api.simpleshop.cz/2.0/
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20200014",
-                        "date_created": "2020-02-10",
-                        "date_due": "2020-02-20",
-                        "date_taxable_supply": "2020-02-10",
+                        "number": "20200036",
+                        "date_created": "2020-04-30",
+                        "date_due": "2020-05-10",
+                        "date_taxable_supply": "2020-04-30",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -2192,12 +2215,12 @@ https://api.simpleshop.cz/2.0/
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20200014",
+                        "VS": "20200036",
                         "KS": "0308",
                         "SS": "",
                         "currency": "CZK",
                         "currency_domestic": "CZK",
-                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                        "search": "20200036 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
@@ -2270,14 +2293,14 @@ https://api.simpleshop.cz/2.0/
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
-                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288534/773a78/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288534/773a78/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288534/",
                         "log": [
                             {
-                                "date": "2020-02-10 11:01:03",
+                                "date": "2020-04-30 14:01:25",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -2396,7 +2419,7 @@ https://api.simpleshop.cz/2.0/
                     "bcc": "",
                     "subject": "Opravný daňový doklad č. 520200001 - uhrazena",
                     "pdfAttachment": true,
-                    "body": "Dobrý den\r\n\r\nVaše platba byla přijata (Opravný daňový doklad č. 520200001).\r\n\r\nOpravný daňový doklad č. 520200001 naleznete na adrese: https://www.vyfakturuj.cz/print/document/1115851/073ff9/\r\n\r\nS pozdravem\r\n\r\nDemo s.r.o. plátce"
+                    "body": "Dobrý den\r\n\r\nVaše platba byla přijata (Opravný daňový doklad č. 520200001).\r\n\r\nOpravný daňový doklad č. 520200001 naleznete na adrese: https://www.vyfakturuj.cz/print/document/1288535/ed8db6/\r\n\r\nS pozdravem\r\n\r\nDemo s.r.o. plátce"
                 }
             }
 
@@ -2420,7 +2443,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "1115851",
+                "id": "1288535",
                 "id_identity": "0",
                 "id_customer": "-1",
                 "id_number_series": "28443",
@@ -2429,7 +2452,7 @@ https://api.simpleshop.cz/2.0/
                 "id_predkontace": "0",
                 "id_cleneniDPH": "0",
                 "id_coupon": "0",
-                "id_parent": "1115850",
+                "id_parent": "1288534",
                 "id_eet_pokl": "0",
                 "type": "32",
                 "flags": "1",
@@ -2437,9 +2460,9 @@ https://api.simpleshop.cz/2.0/
                 "eet_status": "1",
                 "eet_data": "",
                 "number": "520200001",
-                "date_created": "2020-02-10",
-                "date_due": "2020-02-10",
-                "date_taxable_supply": "2020-02-10",
+                "date_created": "2020-04-30",
+                "date_due": "2020-04-30",
+                "date_taxable_supply": "2020-04-30",
                 "date_paid": "0000-00-00",
                 "date_reminder": "0000-00-00",
                 "date_reminder_2": "0000-00-00",
@@ -2491,12 +2514,12 @@ https://api.simpleshop.cz/2.0/
                 "text_invoice_footer": "",
                 "mail_to": [],
                 "language": "cs",
-                "VS": "20200014",
+                "VS": "20200036",
                 "KS": "0308",
                 "SS": "",
                 "currency": "CZK",
                 "currency_domestic": "CZK",
-                "search": "520200001 20200014 123456789 ukazkova firma po uprave 1138.79 sterac na ponorku",
+                "search": "520200001 20200036 123456789 ukazkova firma po uprave 1138.79 sterac na ponorku",
                 "exchange_rate": "1",
                 "total": "1138.79",
                 "total_without_vat": "990.25",
@@ -2533,28 +2556,28 @@ https://api.simpleshop.cz/2.0/
                 "storno": false,
                 "moss": false,
                 "need_attention": false,
-                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115851/073ff9/",
-                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115851/073ff9/",
-                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/download/",
-                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115851/073ff9/nostamp/",
-                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115851/",
+                "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288535/ed8db6/",
+                "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288535/ed8db6/",
+                "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/download/",
+                "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288535/ed8db6/nostamp/",
+                "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288535/",
                 "log": [
                     {
-                        "date": "2020-02-10 11:01:04",
-                        "text": "Vytvořen opravný doklad k {vfiid:1115850:FA&nbsp;20200014} "
+                        "date": "2020-04-30 14:01:25",
+                        "text": "Vytvořen opravný doklad k {vfiid:1288534:FA 20200036} "
                     },
                     {
-                        "date": "2020-02-10 11:01:04",
+                        "date": "2020-04-30 14:01:25",
                         "text": "Vytvoření dokumentu."
                     },
                     {
-                        "date": "2020-02-10 11:01:04",
+                        "date": "2020-04-30 14:01:26",
                         "text": "Uhrazeno 1&nbsp;138,79&nbsp;Kč k datu 31.12.2016."
                     }
                 ],
                 "related_documents": {
-                    "1115850": {
-                        "id": "1115850",
+                    "1288534": {
+                        "id": "1288534",
                         "id_identity": "0",
                         "id_customer": "-1",
                         "id_number_series": "28437",
@@ -2570,10 +2593,10 @@ https://api.simpleshop.cz/2.0/
                         "tags": "0",
                         "eet_status": "1",
                         "eet_data": "",
-                        "number": "20200014",
-                        "date_created": "2020-02-10",
-                        "date_due": "2020-02-20",
-                        "date_taxable_supply": "2020-02-10",
+                        "number": "20200036",
+                        "date_created": "2020-04-30",
+                        "date_due": "2020-05-10",
+                        "date_taxable_supply": "2020-04-30",
                         "date_paid": "0000-00-00",
                         "date_reminder": "0000-00-00",
                         "date_reminder_2": "0000-00-00",
@@ -2625,12 +2648,12 @@ https://api.simpleshop.cz/2.0/
                         "text_invoice_footer": "",
                         "mail_to": [],
                         "language": "cs",
-                        "VS": "20200014",
+                        "VS": "20200036",
                         "KS": "0308",
                         "SS": "",
                         "currency": "CZK",
                         "currency_domestic": "CZK",
-                        "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                        "search": "20200036 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                         "exchange_rate": 1,
                         "total": "1206.64",
                         "total_without_vat": "1049.25",
@@ -2703,14 +2726,14 @@ https://api.simpleshop.cz/2.0/
                         "storno": false,
                         "moss": false,
                         "need_attention": false,
-                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
-                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
-                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
-                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
-                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
+                        "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288534/773a78/",
+                        "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288534/773a78/",
+                        "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/download/",
+                        "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/nostamp/",
+                        "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288534/",
                         "log": [
                             {
-                                "date": "2020-02-10 11:01:03",
+                                "date": "2020-04-30 14:01:25",
                                 "text": "Vytvoření dokumentu."
                             }
                         ]
@@ -2757,7 +2780,7 @@ https://api.simpleshop.cz/2.0/
 
             [
                 {
-                    "id": "1115850",
+                    "id": "1288534",
                     "id_identity": "0",
                     "id_customer": "-1",
                     "id_number_series": "28437",
@@ -2773,10 +2796,10 @@ https://api.simpleshop.cz/2.0/
                     "tags": "0",
                     "eet_status": "1",
                     "eet_data": "",
-                    "number": "20200014",
-                    "date_created": "2020-02-10",
-                    "date_due": "2020-02-20",
-                    "date_taxable_supply": "2020-02-10",
+                    "number": "20200036",
+                    "date_created": "2020-04-30",
+                    "date_due": "2020-05-10",
+                    "date_taxable_supply": "2020-04-30",
                     "date_paid": "0000-00-00",
                     "date_reminder": "0000-00-00",
                     "date_reminder_2": "0000-00-00",
@@ -2828,12 +2851,12 @@ https://api.simpleshop.cz/2.0/
                     "text_invoice_footer": "",
                     "mail_to": [],
                     "language": "cs",
-                    "VS": "20200014",
+                    "VS": "20200036",
                     "KS": "0308",
                     "SS": "",
                     "currency": "CZK",
                     "currency_domestic": "CZK",
-                    "search": "20200014 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
+                    "search": "20200036 123456789 ukazkova firma 1206.64 sterac na ponorku kapalina do ostrikovacu 250 ml doprava",
                     "exchange_rate": 1,
                     "total": "1206.64",
                     "total_without_vat": "1049.25",
@@ -2906,14 +2929,14 @@ https://api.simpleshop.cz/2.0/
                     "storno": false,
                     "moss": false,
                     "need_attention": false,
-                    "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1115850/6ee93b/",
-                    "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1115850/6ee93b/",
-                    "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/download/",
-                    "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1115850/6ee93b/nostamp/",
-                    "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1115850/",
+                    "url_public_webpage": "https://www.vyfakturuj.cz/print/document/1288534/773a78/",
+                    "url_online_payment": "https://www.vyfakturuj.cz/print/document/online-payment/1288534/773a78/",
+                    "url_download_pdf": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/download/",
+                    "url_download_pdf_no_stamp": "https://www.vyfakturuj.cz/print/document/pdf/1288534/773a78/nostamp/",
+                    "url_app_detail": "https://app.vyfakturuj.cz/faktury/detail/1288534/",
                     "log": [
                         {
-                            "date": "2020-02-10 11:01:03",
+                            "date": "2020-04-30 14:01:25",
                             "text": "Vytvoření dokumentu."
                         }
                     ],
@@ -3173,7 +3196,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": 356545,
+                "id": 412161,
                 "IC": "123456789",
                 "DIC": "",
                 "name": "#API - Ukázkový kontakt",
@@ -3206,7 +3229,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "356545",
+                "id": "412161",
                 "IC": "123456789",
                 "DIC": "",
                 "name": "#API - Ukázkový kontakt",
@@ -3242,7 +3265,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "356545",
+                "id": "412161",
                 "IC": "123456789",
                 "DIC": "",
                 "name": "#API - Ukázkový kontakt - po úpravě",
@@ -3651,7 +3674,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": 10787,
+                "id": 12009,
                 "id_customer": "0",
                 "name": "#API - Test šablony1",
                 "type": "1",
@@ -3725,7 +3748,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "10787",
+                "id": "12009",
                 "id_customer": "0",
                 "name": "#API - Test šablony1",
                 "type": "1",
@@ -3802,7 +3825,7 @@ https://api.simpleshop.cz/2.0/
     + Body
 
             {
-                "id": "10787",
+                "id": "12009",
                 "id_customer": "0",
                 "name": "#API - Změna názvu",
                 "type": "1",
@@ -3959,6 +3982,86 @@ https://api.simpleshop.cz/2.0/
 
             [
                 {
+                    "id_payment_method": "54356",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1024",
+                    "provider": "1",
+                    "name": "superCASH GoPay"
+                },
+                {
+                    "id_payment_method": "52387",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52386",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52385",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52384",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52383",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52382",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52381",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52380",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
+                    "id_payment_method": "52379",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "1",
+                    "provider": "0",
+                    "name": "Bankovní převod (import 2020-02-12 14:47:19)"
+                },
+                {
                     "id_payment_method": "10380",
                     "id_eet_pokl": "0",
                     "flags": "0",
@@ -4005,6 +4108,14 @@ https://api.simpleshop.cz/2.0/
                     "type": "4",
                     "provider": "0",
                     "name": "Dobírka"
+                },
+                {
+                    "id_payment_method": "52332",
+                    "id_eet_pokl": "0",
+                    "flags": "0",
+                    "type": "256",
+                    "provider": "0",
+                    "name": "Po dodání"
                 }
             ]
 
@@ -4136,10 +4247,17 @@ https://api.simpleshop.cz/2.0/
                 },
                 {
                     "id_number_series": "28445",
-                    "id_number_series_child": "0",
+                    "id_number_series_child": "28437",
                     "type": "512",
                     "name": "Objednávka",
                     "pattern": "4{yyyy}{cccc}"
+                },
+                {
+                    "id_number_series": "129272",
+                    "id_number_series_child": "0",
+                    "type": "1024",
+                    "name": "N2",
+                    "pattern": "3-{yyyy}-{cccc}"
                 },
                 {
                     "id_number_series": "28446",
@@ -4163,13 +4281,6 @@ https://api.simpleshop.cz/2.0/
                     "pattern": "{yy}{ccc}"
                 },
                 {
-                    "id_number_series": "129272",
-                    "id_number_series_child": "0",
-                    "type": "1024",
-                    "name": "N2",
-                    "pattern": "3-{yyyy}-{cccc}"
-                },
-                {
                     "id_number_series": "168035",
                     "id_number_series_child": "0",
                     "type": "4",
@@ -4182,5 +4293,12 @@ https://api.simpleshop.cz/2.0/
                     "type": "1",
                     "name": "test 03/04",
                     "pattern": "{y-12m} iFV9{cccc}"
+                },
+                {
+                    "id_number_series": "177422",
+                    "id_number_series_child": "0",
+                    "type": "2",
+                    "name": "Druhá řada",
+                    "pattern": "ZF{yy}{ccccc}"
                 }
             ]
