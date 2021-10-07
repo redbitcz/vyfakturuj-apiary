@@ -67,6 +67,25 @@ Toto API je možné použít i pro náš druhý produkt [SimpleShop.cz](https://
 ```
 https://api.simpleshop.cz/2.0/
 ```
+## Deprecated
+
+Zastaralé funkce a parametry, jejichž podpora skončí.
+
+### Obecně
+| Změna                                   | Starý způsob              | Nově                     |
+|-----------------------------------------|:-------------------------:|:------------------------:|
+| Změna subdomény API Vyfakturuj.cz       | `www.vyfakturuj.cz/api/`  | `api.vyfakturuj.cz/2.0/` |
+
+### Faktury
+| Změna                             | Starý způsob                 | Nově                             |
+|-----------------------------------|:----------------------------:|:--------------------------------:|
+| Požadavky akcí                    | `/invoice/{id}/payment/`     | `/invoice/{id}/do/pay/`          |
+|                                   | `/invoice/{id}/send-eet/`    | `/invoice/{id}/do/send-eet/`     |
+|                                   | `/invoice/{id}/send-mail/`   | `/invoice/{id}/do/send-mail/`    |
+| Nahrazení parametru `country`     | `supplier_country`           | `supplier_country_code`          |
+|                                   | `customer_country`           | `customer_country_code`          |
+|                                   | `customer_delivery_country`  | `customer_delivery_country_code` |
+| Změna parametru MOSS na OSS       | `moss`                       | `oss`                            |
 
 # Group Faktury
 
