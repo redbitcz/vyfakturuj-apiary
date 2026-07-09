@@ -1,4 +1,6 @@
-# Vyfakturuj.cz – Dokumentace API (Apiary)
+Aktuální dokumentace: [api.vyfakturuj.cz/scalar/](https://api.vyfakturuj.cz/scalar/)
+
+# Vyfakturuj.cz – stará Dokumentace API (Apiary)
 
 Zdrojový kód dokumentace API Vyfakturuj.cz
 
